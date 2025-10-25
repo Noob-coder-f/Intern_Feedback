@@ -1,0 +1,90 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnp/
+.pnp.js
+.yarn-integrity
+
+# Build / output / caches
+dist/
+build/
+out/
+.cache/
+.next/
+.nuxt/
+.parcel-cache/
+coverage/
+coverage-final.json
+
+# Client build (monorepo style)
+client/build/
+public/build/
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Dependency folders for backend/frontend if separated
+server/node_modules/
+client/node_modules/
+
+# Temporary / runtime files
+tmp/
+temp/
+*.tmp
+*.pid
+*.seed
+*.pid.lock
+pids/
+
+# Test output
+coverage/
+coverage-final.json
+nyc_output/
+
+# Database
+*.sqlite
+*.sqlite3
+dump.rdb
+
+# Certificates and keys
+*.key
+*.pem
+*.crt
+
+# Archives / packages
+*.tgz
+*.zip
+
+# Docker
+docker-compose.override.yml
+.docker/
+
+# Build artifacts from other tools
+/dist
+/.parcel-cache
+
+
+
+# Misc
+.vagrant/
+.idea/
+*.iml
+
+# Windows thumbnail cache
+Thumbs.db
+ehthumbs.db
