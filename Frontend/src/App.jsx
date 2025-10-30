@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import RegisterPage from "./Pages/RegisterPage.jsx";
 import SignInPage from "./Pages/SignInPage.jsx";
 import GraphuraPage from "./Pages/Home.jsx";
+import TermsAndConditions from "./Pages/InternshipGuide.jsx";
+
 
 function App() {
   return (
@@ -12,6 +14,7 @@ function App() {
         <Route path="/" element={<GraphuraPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/signup" element={<SignInPage />} />
+        <Route path="/terms" element={<TermsAndConditions />} />
 
         <Route
           path="*"

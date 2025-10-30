@@ -1,7 +1,7 @@
-
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-import axios from 'axios';  // Import axios
+import axios from 'axios';
+import { Eye, EyeOff } from "lucide-react"; // 👁️ Import Lucide icons
 
 const RegistrationPage = () => {
   const [form, setForm] = useState({
@@ -16,6 +16,10 @@ const RegistrationPage = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(null);
+
+  // 👁️ Password visibility states
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -34,8 +38,7 @@ const RegistrationPage = () => {
     setLoading(true);
     try {
       const { fullName, email, contactNumber, password, role, secretKey } = form;
-      const response = await axios.post('YOUR_API', 
-        {
+      const response = await axios.post('YOUR_API', {
         fullName,
         email,
         contactNumber,
@@ -53,7 +56,7 @@ const RegistrationPage = () => {
         confirmPassword: '',
         role: '',
         secretKey: '',
-      }); // optional clear form
+      });
     } catch (err) {
       console.error('Registration failed:', err);
       setError('Registration failed. Please try again.');
@@ -79,17 +82,20 @@ const RegistrationPage = () => {
               alt="Graphura Logo"
               className="h-14 w-14 object-contain rounded-full"
             />
-            <img
-              src="GraphuraLogo.jpg"
-              alt="Graphura Text"
-              className="h-14 object-contain"
-            />
           </div>
 
-          <div className="relative z-10 flex-1 flex flex-col justify-center items-center">
-            <div className="text-center">
-              <h1 className="text-3xl font-bold mb-4">Register Now</h1>
-              <p className="text-sm opacity-90">Create your account<br />to get started</p>
+          <div className="relative z-10 flex-1 flex flex-col justify-center items-center px-6 text-center">
+            <div>
+              <h1 className="text-3xl font-extrabold text-white mb-3 tracking-wide drop-shadow-md">
+                Register Portal Access
+              </h1>
+              <p className="text-lg text-gray-200 mb-2">
+                Create your account.
+              </p>
+              <p className="text-sm text-gray-300 max-w-md mx-auto leading-relaxed">
+                Gain secure access to monitor intern performance, review feedback reports,
+                and manage departmental evaluations.
+              </p>
             </div>
           </div>
         </div>
@@ -159,10 +165,11 @@ const RegistrationPage = () => {
                 required
               />
             </div>
-            {/* Password */}
-            <div>
+
+            {/* Password Field with Eye Toggle */}
+            <div className="relative">
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 name="password"
                 value={form.password}
                 onChange={handleChange}
@@ -170,11 +177,19 @@ const RegistrationPage = () => {
                 className="w-full pb-2 border-b-2 border-gray-200 focus:border-purple-500 outline-none text-sm text-gray-700 placeholder-gray-400 transition-colors"
                 required
               />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-purple-600 transition-colors"
+              >
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
             </div>
-            {/* Confirm Password */}
-            <div>
+
+            {/* Confirm Password Field with Eye Toggle */}
+            <div className="relative">
               <input
-                type="password"
+                type={showConfirmPassword ? "text" : "password"}
                 name="confirmPassword"
                 value={form.confirmPassword}
                 onChange={handleChange}
@@ -182,6 +197,13 @@ const RegistrationPage = () => {
                 className="w-full pb-2 border-b-2 border-gray-200 focus:border-purple-500 outline-none text-sm text-gray-700 placeholder-gray-400 transition-colors"
                 required
               />
+              <button
+                type="button"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-purple-600 transition-colors"
+              >
+                {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
             </div>
 
             {error && <p className="text-red-600 text-sm">{error}</p>}
