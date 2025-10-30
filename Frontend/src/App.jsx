@@ -1,13 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import RegisterPage from "./Pages/RegisterPage";
-import SignInPage from "./Pages/SignInPage";
+import RegisterPage from "./Pages/RegisterPage.jsx";
+import SignInPage from "./Pages/SignInPage.jsx";
+import GraphuraPage from "./Pages/Home.jsx";
 
 function App() {
   return (
 
     <Router>
       <Routes>
+        <Route path="/" element={<GraphuraPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/signup" element={<SignInPage />} />
 
