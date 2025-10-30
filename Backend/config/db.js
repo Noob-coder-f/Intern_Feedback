@@ -14,11 +14,13 @@ const connectDB = async () => {
     db.once("open", () => {
       console.log("✅ Connected to old MongoDB DB");
     });
-
+    
 
     const internsCollection = db.collection("interns");
     console.log("ℹ️ 'interns' collection ready:", internsCollection.collectionName);
     const sampleIntern = await internsCollection.findOne();
+    // console.log('sample data',sampleIntern);cd
+    
 
 
   } catch (error) {
