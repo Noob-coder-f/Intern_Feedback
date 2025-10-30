@@ -5,9 +5,14 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+<<<<<<< HEAD
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "dev": "nodemon index.js"
+=======
+    
+      "dev": "node index.js"
+>>>>>>> 83ce01e (Added new feature)
   },
   "keywords": [],
   "author": "",
