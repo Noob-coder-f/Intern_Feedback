@@ -171,13 +171,6 @@ export default function GraphuraPage() {
                 >
                   Submit Your Feedback
                 </Link>
-                <a
-                  href="https://www.graphura.live/apply"
-                  className="block w-full border border-purple-600 text-purple-600 text-center py-4 rounded-lg hover:bg-purple-600 hover:text-white transition-all duration-300 font-semibold"
-                >
-                  Apply for Internship
-                </a>
-
               </div>
             </div>
           </div>
