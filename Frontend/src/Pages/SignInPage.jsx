@@ -1,7 +1,8 @@
 
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 
-const SignInPage = ({ onCreateAccount }) => {
+const SignInPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -46,11 +47,8 @@ const SignInPage = ({ onCreateAccount }) => {
               <p className="text-sm opacity-90">Sign in to<br />continue access</p>
             </div>
           </div>
-          
-          {/* Footer Link */}
-          <div className="relative z-10">
-            <p className="text-xs opacity-75">www.graphura.com</p>
-          </div>
+        
+
         </div>
 
         {/* Right Panel - Sign In Form */}
@@ -91,16 +89,15 @@ const SignInPage = ({ onCreateAccount }) => {
             </button>
 
             {/* Create Account Link */}
-            <div className="text-center">
+            <div className="text-center mt-4">
               <p className="text-sm text-gray-600">
                 Don't have an account?{' '}
-                <button
-                  type="button"
-                  onClick={onCreateAccount}
+                <Link
+                  to="/register"
                   className="text-purple-600 font-semibold hover:text-purple-800 transition-colors"
                 >
                   Create Account
-                </button>
+                </Link>
               </p>
             </div>
 

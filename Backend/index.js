@@ -4,10 +4,16 @@ const port = 3000;
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 
-
 dotenv.config();
+
+
 console.log("📦 MongoDB URL:", process.env.MONGODB_URL);
+
+
 app.use(express.json());
+
+
+
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });

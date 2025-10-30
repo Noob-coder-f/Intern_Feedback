@@ -1,7 +1,8 @@
 
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 
-const RegistrationPage = ({ onBackToSignIn }) => {
+const RegistrationPage = () => {
   const [form, setForm] = useState({
     fullName: '',
     email: '',
@@ -28,7 +29,7 @@ const RegistrationPage = ({ onBackToSignIn }) => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-400 via-purple-400 to-indigo-500 p-4">
       <div className="flex w-full max-w-4xl min-h-[600px] rounded-2xl shadow-2xl overflow-hidden">
-        
+
         {/* Left Panel - Purple Gradient with Circles */}
         <div className="w-1/2 bg-gradient-to-br from-indigo-900 via-purple-800 to-purple-900 relative flex flex-col justify-between p-10 text-white">
           {/* Decorative circles */}
@@ -36,19 +37,19 @@ const RegistrationPage = ({ onBackToSignIn }) => {
           <div className="absolute bottom-20 left-10 w-40 h-40 bg-gradient-to-br from-pink-500 to-purple-600 rounded-full opacity-60 blur-md"></div>
           <div className="absolute top-32 left-32 w-24 h-24 bg-gradient-to-br from-purple-400 to-indigo-500 rounded-full opacity-50 blur-lg"></div>
           <div className="absolute bottom-10 right-10 w-16 h-16 bg-pink-400 rounded-full opacity-40"></div>
-          
+
           {/* Logo Section in Top-Left Corner */}
           <div className="absolute top-4 left-4 z-20 flex items-center gap-3">
             {/* Circular Graphura Logo */}
-            <img 
-              src="Graphura.jpg" 
-              alt="Graphura Logo" 
+            <img
+              src="Graphura.jpg"
+              alt="Graphura Logo"
               className="h-14 w-14 object-contain rounded-full"
             />
             {/* Text Graphura Logo */}
-            <img 
-              src="GraphuraLogo.jpg" 
-              alt="Graphura Text" 
+            <img
+              src="GraphuraLogo.jpg"
+              alt="Graphura Text"
               className="h-14 object-contain"
             />
           </div>
@@ -61,17 +62,14 @@ const RegistrationPage = ({ onBackToSignIn }) => {
               <p className="text-sm opacity-90">Create your account<br />to get started</p>
             </div>
           </div>
-          
-          {/* Footer Link */}
-          <div className="relative z-10">
-            <p className="text-xs opacity-75">www.graphura.com</p>
-          </div>
+
+
         </div>
 
         {/* Right Panel - Registration Form */}
         <div className="w-1/2 bg-white flex flex-col justify-center px-12 py-10 overflow-y-auto">
           <h2 className="text-2xl font-bold text-gray-800 mb-6">Create Account</h2>
-          
+
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Full Name */}
             <div>
@@ -111,7 +109,7 @@ const RegistrationPage = ({ onBackToSignIn }) => {
                 required
               />
             </div>
-             {/* Role */}
+            {/* Role */}
             <div>
               <input
                 type="text"
@@ -163,7 +161,7 @@ const RegistrationPage = ({ onBackToSignIn }) => {
               />
             </div>
 
-           
+
 
             {/* Register Button */}
             <button
@@ -177,13 +175,12 @@ const RegistrationPage = ({ onBackToSignIn }) => {
             <div className="text-center mt-4">
               <p className="text-sm text-gray-600">
                 Already have an account?{' '}
-                <button
-                  type="button"
-                  onClick={onBackToSignIn}
+                <Link
+                  to="/signup"
                   className="text-purple-600 font-semibold hover:text-purple-800 transition-colors"
                 >
                   Sign In
-                </button>
+                </Link>
               </p>
             </div>
           </form>
