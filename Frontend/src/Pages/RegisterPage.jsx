@@ -37,12 +37,15 @@ const RegistrationPage = () => {
 
     setLoading(true);
     try {
-      const { fullName, email, contactNumber, password, role, secretKey } = form;
-      const response = await axios.post('YOUR_API', {
+      // console.log('form',form);
+      
+      const { fullName, email, contactNumber, password,confirmPassword, role, secretKey } = form;
+      const response = await axios.post('http://localhost:3000/user/register', {
         fullName,
         email,
         contactNumber,
         password,
+        confirmPassword,
         role,
         secretKey,
       });

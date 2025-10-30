@@ -2,9 +2,10 @@ import mongoose from "mongoose";
 
 const connectDB = async () => {
   try {
-    console.log("🔵 Connecting to MongoDB...");
+    // console.log("🔵 Connecting to MongoDB...");
     await mongoose.connect(process.env.MONGODB_URL);
-
+    console.log('Database connected...');
+    
     const db = mongoose.connection;
 
     db.on("error", (err) => {
@@ -16,10 +17,10 @@ const connectDB = async () => {
     });
     
 
-    const internsCollection = db.collection("interns");
-    console.log("ℹ️ 'interns' collection ready:", internsCollection.collectionName);
-    const sampleIntern = await internsCollection.findOne();
-    // console.log('sample data',sampleIntern);cd
+    // const internsCollection = db.collection("User");
+    // console.log("ℹ️ 'intern_Feedback' collection ready:", internsCollection.collectionName);
+    // const sampleIntern = await internsCollection.findOne();
+    // console.log('sample data',sampleIntern);
     
 
 
