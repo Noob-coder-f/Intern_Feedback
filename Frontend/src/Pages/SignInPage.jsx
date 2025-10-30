@@ -34,7 +34,7 @@ const SignInPage = () => {
 
     setLoading(true);
     try {
-      const response = await axios.post('YOUR_API_ENDPOINT', {
+      const response = await axios.post('/api/login', {
         email,
         password,
       });

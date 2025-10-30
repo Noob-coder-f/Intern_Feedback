@@ -40,7 +40,7 @@ const RegistrationPage = () => {
       // console.log('form',form);
       
       const { fullName, email, contactNumber, password,confirmPassword, role, secretKey } = form;
-      const response = await axios.post('http://localhost:3000/user/register', {
+      const response = await axios.post('/api/register', {
         fullName,
         email,
         contactNumber,

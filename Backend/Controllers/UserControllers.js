@@ -1,6 +1,7 @@
 import User from "../models/User.js"
 import bcrypt from "bcryptjs";
 import dotenv from "dotenv";
+import jwt from "jsonwebtoken";
 
 dotenv.config();
 
@@ -64,4 +65,82 @@ export const registerUser = async (req, res) => {
       error: error.message,
     });
   }
+};
+
+
+export const loginUser = async (req, res) => {
+ 
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({ success: false, message: "Email and password are required ❌" });
+    }
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ success: false, message: "Invalid email or password ❌" });
+    }
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      return res.status(400).json({ success: false, message: "Invalid email or password ❌" });
+    }
+
+
+    const token = jwt.sign(
+      { id: user._id, role: user.role },
+      process.env.JWT_SECRET,
+      { expiresIn: process.env.JWT_EXPIRES_IN || "1d" }
+    );
+
+     res.cookie("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      maxAge: 24 * 60 * 60 * 1000, // 1 day
+    });
+
+
+    res.status(200).json({
+      success: true,
+      message: "Login successful ✅",
+      token,
+      user: {
+        id: user._id,
+        fullName: user.fullName,
+        email: user.email,
+        contactNumber: user.contactNumber,
+        role: user.role,
+      },
+    });
+
+    
+  } catch (error) {
+    console.error("Login Error:", error);
+    res.status(500).json({
+      success: false,
+      message: "Server error ❌",
+      error: error.message,
+    });
+    
+  }
+
+}
+
+
+
+//  Check Auth (auto-login if cookie valid)
+export const checkAuth = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+    if (!user) return res.status(404).json({ message: "User not found." });
+    res.json({ message: "User authenticated", user });
+  } catch (err) {
+    res.status(500).json({ message: "Error verifying user." });
+  }
+};
+
+//  Logout Controller
+export const logoutUser = (req, res) => {
+  res.clearCookie("token");
+  res.json({ message: "Logged out successfully." });
 };

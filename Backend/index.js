@@ -1,29 +1,28 @@
 import express from 'express';
 import authRoutes from "./Route/authRoutes.js";
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 8000;
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 import cors from 'cors';
+import cookieParser from "cookie-parser";
+
 
 app.use(cors());
 dotenv.config();
 
-
-console.log("📦 MongoDB URL:", process.env.MONGODB_URL);
-
-
 app.use(express.json());
-
-
+app.use(cookieParser());
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-app.use("/user", authRoutes);
-
 connectDB();
+
+//Routes
+app.use("/api", authRoutes);
+
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
