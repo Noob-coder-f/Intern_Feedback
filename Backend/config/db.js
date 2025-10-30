@@ -18,9 +18,7 @@ const connectDB = async () => {
 
     const internsCollection = db.collection("interns");
     console.log("ℹ️ 'interns' collection ready:", internsCollection.collectionName);
-  // fro checking to see if connection is working properly
     const sampleIntern = await internsCollection.findOne();
-// console.log("👀 Sample intern document:", sampleIntern);
 
 
   } catch (error) {
