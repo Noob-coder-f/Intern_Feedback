@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const SignInPage = () => {
   const [email, setEmail] = useState("");
@@ -8,7 +9,9 @@ const SignInPage = () => {
   const [userCaptcha, setUserCaptcha] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
+  
   // Generate captcha
   const generateCaptcha = () => {
     const a = Math.floor(Math.random() * 10);
@@ -21,21 +24,99 @@ const SignInPage = () => {
     generateCaptcha();
   }, []);
 
-  const handleSubmit = (e) => {
+  // API call for sign in
+  const signInAPI = async (email, password) => {
+    try {
+      const response = await axios.post(
+        `/api/login`,
+        {
+          email: email.trim().toLowerCase(),
+          password: password,
+        },
+        {
+          timeout: 10000,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      return response.data;
+    } catch (error) {
+      // Handle different types of errors
+      if (error.response) {
+        // Server responded with error status
+        throw new Error(error.response.data.message || "Sign in failed");
+      } else if (error.request) {
+        // Request was made but no response received
+        throw new Error("Network error. Please check your connection.");
+      } else {
+        // Something else happened
+        throw new Error("An unexpected error occurred.");
+      }
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Validate CAPTCHA
     if (parseInt(userCaptcha) !== captcha.a + captcha.b) {
       setError("❌ Incorrect CAPTCHA answer. Try again.");
       generateCaptcha();
       return;
     }
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setError("❌ Please enter a valid email address.");
+      return;
+    }
+
+    // Password validation
+    if (password.length < 6) {
+      setError("❌ Password must be at least 6 characters long.");
+      return;
+    }
+
     setError("");
     setLoading(true);
-    // Simulate login API
-    setTimeout(() => {
+
+    try {
+      // Call the API
+      const result = await signInAPI(email, password);
+      
+      // Handle successful login
+      console.log("Login successful:", result);
+      
+      // Store user data and token
+      if (result.token) {
+        localStorage.setItem("authToken", result.token);
+        localStorage.setItem("user", JSON.stringify(result.user));
+        
+        // You can also use context or state management here
+        // For example, if you have an AuthContext:
+        // setUser(result.user);
+      }
+
+      // Show success message (optional)
+      // alert("Login successful!");
+      
+      // Redirect to dashboard or home page
+      navigate("/dashboard", { 
+        state: { message: "Login successful!" } 
+      });
+      
+    } catch (err) {
+      setError(`❌ ${err.message}`);
+      generateCaptcha(); // Regenerate CAPTCHA on error
+    } finally {
       setLoading(false);
-      alert("Login successful!");
-    }, 1200);
+    }
   };
+
+
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-pink-400 via-purple-400 to-indigo-500 p-4">
@@ -139,7 +220,7 @@ const SignInPage = () => {
             {/* Register link */}
             <div className="text-center mt-4">
               <p className="text-sm text-gray-600">
-                Don’t have an account?{" "}
+                Don't have an account?{" "}
                 <Link
                   to="/register"
                   className="text-purple-600 font-semibold hover:text-purple-800 transition-colors"

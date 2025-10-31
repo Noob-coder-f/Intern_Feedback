@@ -18,8 +18,8 @@ app.use(cookieParser());
 connectDB();
 
 //Routes
-app.use("/user", authRoutes);
-app.use("/feedback", feedbackRoutes);
+app.use("/api", authRoutes);
+app.use("/api", feedbackRoutes);
 
 
 
