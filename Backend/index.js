@@ -1,5 +1,6 @@
 import express from 'express';
 import authRoutes from "./Route/authRoutes.js";
+import feedbackRoutes from "./Route/feedbackRoutes.js";
 const app = express();
 const port = process.env.PORT || 8000;
 import dotenv from 'dotenv';
@@ -17,7 +18,9 @@ app.use(cookieParser());
 connectDB();
 
 //Routes
-app.use("/api", authRoutes);
+app.use("/user", authRoutes);
+app.use("/feedback", feedbackRoutes);
+
 
 
 app.listen(port, () => {
