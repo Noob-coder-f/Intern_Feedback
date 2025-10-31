@@ -43,22 +43,4 @@ function App() {
   );
 }
 export default App;
-// import React, { useState } from 'react';
-// import SignInPage from './Pages/SignInPage';
-// import RegistrationPage from './Pages/RegisterPage';
 
-// const App = () => {
-//   const [currentPage, setCurrentPage] = useState('signin'); // 'signin' or 'register'
-
-//   return (
-//     <div>
-//       {currentPage === 'signin' ? (
-//         <SignInPage onCreateAccount={() => setCurrentPage('register')} />
-//       ) : (
-//         <RegistrationPage onBackToSignIn={() => setCurrentPage('signin')} />
-//       )}
-//     </div>
-//   );
-// };
-
-// export default App;
