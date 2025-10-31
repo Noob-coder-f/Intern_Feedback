@@ -91,4 +91,4 @@ ehthumbs.db
 
 # Environment files
 .env
-backend/.env
+/.env
