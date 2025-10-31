@@ -1,170 +1,114 @@
 import mongoose from "mongoose";
 
 const feedbackSchema = new mongoose.Schema({
-  // 🧩 1. Intern Details (no question field)
-  internUniqueId: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  internName: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  department: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  seniorOrManager: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  joiningDate: {
-    type: Date,
-    required: true,
-  },
+  // 🧩 INTERN DETAILS
+  internUniqueId: { type: String, required: true, trim: true },
+  internName: { type: String, required: true, trim: true },
+  department: { type: String, required: true, trim: true },
+  seniorOrManager: { type: String, required: true, trim: true },
+  joiningDate: { type: Date, required: true },
 
-  // 🧠 2. Internship Experience Overview
-  tasksAndResponsibilities: {
+  // 🌟 INTERN FEEDBACK SECTION
+  Q1_internship: {
     question: {
       type: String,
-      default: "Briefly describe the tasks and responsibilities you handled:",
+      default:
+        "What tasks or responsibilities did you handle during your internship?",
     },
-    answer: { type: String, required: true },
+    answer: { type: String, default: "" },
   },
-  meaningfulProject: {
+  Q2_internship: {
     question: {
       type: String,
-      default: "What project or work assignment did you find the most meaningful or engaging?",
+      default:
+        "Which project or activity did you find most meaningful or enjoyable?",
     },
-    answer: { type: String, required: true },
+    answer: { type: String, default: "" },
   },
-  developedSkills: {
+  Q3_internship: {
     question: {
       type: String,
-      default: "Which skills did you develop or improve?",
+      default: "What new skills did you learn or improve during your internship?",
     },
-    answer: { type: [String], required: true },
+    answer: { type: [String], default: [] },
   },
-  otherSkillsDeveloped: {
+  Q4_internship: {
     question: {
       type: String,
-      default: "Other skills developed:",
+      default:
+        "How was your overall experience working with your team and mentor?",
+    },
+    answer: { type: String, default: "" },
+  },
+  Q5_internship: {
+    question: {
+      type: String,
+      default: "What did you like the most about the internship program?",
+    },
+    answer: { type: String, default: "" },
+  },
+  Q6_internship: {
+    question: {
+      type: String,
+      default: "Any suggestions to make the internship experience better?",
     },
     answer: { type: String, default: "" },
   },
 
-  // 📘 3. Learning & Support
-  learningSupport: {
+  // 💬 IN-CHARGE / MENTOR FEEDBACK SECTION
+  Q1_incharge: {
     question: {
       type: String,
-      default: "How well did this internship help support your learning and professional growth?",
+      default:
+        "How helpful and supportive was your in-charge during your internship?",
     },
     answer: {
       type: String,
-      enum: ["Excellent", "Good", "Fair", "Needs Improvement"],
-      required: true,
+      enum: ["Excellent", "Good", "Fair", "Needs Improvement", ""],
+      default: "",
     },
-    comment: { type: String, default: "NA" },
   },
-  mentorSupport: {
+  Q2_incharge: {
     question: {
       type: String,
-      default: "Did you receive helpful guidance and support from your supervisor/mentor?",
+      default: "Did your in-charge provide clear guidance and regular feedback?",
     },
     answer: {
       type: String,
-      enum: ["Yes, consistently", "Sometimes", "Rarely", "No"],
-      required: true,
+      enum: ["Yes, regularly", "Sometimes", "Rarely", "No", ""],
+      default: "",
     },
-    comment: { type: String, default: "" },
   },
-
-  // 🏢 4. Work Environment & Feedback
-  teamExperience: {
+  Q3_incharge: {
     question: {
       type: String,
-      default: "How would you describe your experience with the team and organizational culture?",
-    },
-    answer: { type: String, required: true },
-  },
-  inclusionFeeling: {
-    question: {
-      type: String,
-      default: "Did you feel welcomed, included, and valued during your internship?",
-    },
-    answer: {
-      type: String,
-      enum: ["Yes", "Somewhat", "No"],
-      required: true,
-    },
-    comment: { type: String, default: "" },
-  },
-  likedMost: {
-    question: {
-      type: String,
-      default: "What did you like most about the internship program?",
-    },
-    answer: { type: String, required: true },
-  },
-  challengesFaced: {
-    question: {
-      type: String,
-      default: "What challenges did you face during the internship (if any)?",
-    },
-    answer: { type: String, default: "" },
-  },
-  improvementSuggestions: {
-    question: {
-      type: String,
-      default: "Suggestions for improving the internship program:",
+      default:
+        "Any message or appreciation you’d like to share with your in-charge?",
     },
     answer: { type: String, default: "" },
   },
 
-  // 🌐 5. Social Media Engagement
-  socialMedia: {
-    instagram: {
-      question: {
-        type: String,
-        default: "Are you following us on Instagram?",
-      },
-      answer: { type: String, enum: ["Yes", "No"], required: true },
-      link: { type: String, default: "" },
+  // 📱 SOCIAL MEDIA ENGAGEMENT SECTION
+  Q1_social: {
+    question: {
+      type: String,
+      default: "Are you following Graphura on Instagram?",
     },
-    linkedIn: {
-      question: {
-        type: String,
-        default: "Are you following us on LinkedIn?",
-      },
-      answer: { type: String, enum: ["Yes", "No"], required: true },
-      link: { type: String, default: "" },
+    answer: { type: String, enum: ["Yes", "No", ""], default: "" },
+    link: { type: String, default: "https://instagram.com/graphura" },
+  },
+  Q2_social: {
+    question: {
+      type: String,
+      default: "Are you following Graphura on LinkedIn?",
     },
+    answer: { type: String, enum: ["Yes", "No", ""], default: "" },
+    link: { type: String, default: "https://linkedin.com/company/graphura" },
   },
 
-  // 🌟 6. Recommendation & Finalize
-  recommendProgram: {
-    question: {
-      type: String,
-      default: "Would you recommend this internship program to other students/interns?",
-    },
-    answer: { type: String, enum: ["Yes", "Maybe", "No"], required: true },
-  },
-  recommendToCollege: {
-    question: {
-      type: String,
-      default: "Would you be happy if we gave this opportunity to your college as well?",
-    },
-    answer: { type: String, enum: ["Yes", "No"], required: true },
-  },
-  formSubmissionDate: {
-    type: Date,
-    default: Date.now,
-  },
+  // 🗓️ FORM INFO
+  formSubmissionDate: { type: Date, default: Date.now },
 });
 
 const Feedback = mongoose.model("Feedback", feedbackSchema, "Feedback");
-export default Feedback; 
+export default Feedback;

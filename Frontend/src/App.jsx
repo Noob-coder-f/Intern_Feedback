@@ -4,6 +4,7 @@ import RegisterPage from "./Pages/RegisterPage.jsx";
 import SignInPage from "./Pages/SignInPage.jsx";
 import GraphuraPage from "./Pages/Home.jsx";
 import TermsAndConditions from "./Pages/InternshipGuide.jsx";
+import FeedbackForm from "./Pages/FeedbackForm.jsx";
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/signup" element={<SignInPage />} />
         <Route path="/terms" element={<TermsAndConditions />} />
+        <Route path="/feedback" element={<FeedbackForm />} />
 
         <Route
           path="*"
