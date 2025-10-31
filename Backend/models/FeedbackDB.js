@@ -95,7 +95,6 @@ const feedbackSchema = new mongoose.Schema({
       default: "Are you following Graphura on Instagram?",
     },
     answer: { type: String, enum: ["Yes", "No", ""], default: "" },
-    link: { type: String, default: "https://instagram.com/graphura" },
   },
   Q2_social: {
     question: {
@@ -103,8 +102,9 @@ const feedbackSchema = new mongoose.Schema({
       default: "Are you following Graphura on LinkedIn?",
     },
     answer: { type: String, enum: ["Yes", "No", ""], default: "" },
-    link: { type: String, default: "https://linkedin.com/company/graphura" },
   },
+
+  status: { type: String, enum: ["Pending", "Reviewed"], default: "Pending" },
 
   // 🗓️ FORM INFO
   formSubmissionDate: { type: Date, default: Date.now },
