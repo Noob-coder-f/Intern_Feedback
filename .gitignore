@@ -88,3 +88,7 @@ docker-compose.override.yml
 # Windows thumbnail cache
 Thumbs.db
 ehthumbs.db
+
+# Environment files
+.env
+backend/.env
