@@ -86,24 +86,14 @@ const SignInPage = () => {
     try {
       // Call the API
       const result = await signInAPI(email, password);
-      
-      // Handle successful login
+
       console.log("Login successful:", result);
       
       // Store user data and token
       if (result.token) {
         localStorage.setItem("authToken", result.token);
         localStorage.setItem("user", JSON.stringify(result.user));
-        
-        // You can also use context or state management here
-        // For example, if you have an AuthContext:
-        // setUser(result.user);
       }
-
-      // Show success message (optional)
-      // alert("Login successful!");
-      
-      // Redirect to dashboard or home page
       navigate("/dashboard", { 
         state: { message: "Login successful!" } 
       });
