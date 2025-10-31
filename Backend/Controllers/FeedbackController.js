@@ -105,7 +105,7 @@ export const submitFeedback = async (req, res) => {
     // Success response
     res.status(201).json({
       success: true,
-      message: 'Feedback submitted successfully!',
+      message: 'Feedback submitted successfully..',
       data: {
         id: savedFeedback._id,
         internUniqueId: savedFeedback.internUniqueId,
