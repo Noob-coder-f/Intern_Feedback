@@ -1,5 +1,6 @@
 import express from 'express';
 import authRoutes from "./Route/authRoutes.js";
+import feedbackRoutes from "./Route/feedbackRoutes.js";
 const app = express();
 const port = process.env.PORT || 8000;
 import dotenv from 'dotenv';
@@ -14,14 +15,12 @@ dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
-
 connectDB();
 
 //Routes
 app.use("/api", authRoutes);
+app.use("/api", feedbackRoutes);
+
 
 
 app.listen(port, () => {
