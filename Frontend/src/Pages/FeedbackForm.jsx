@@ -246,7 +246,7 @@ const FeedbackForm = () => {
                 await submitFeedbackToAPI(submissionData);
 
                 // Success handling
-                console.log('Form submitted successfully:', submissionData);
+                // console.log('Form submitted successfully:', submissionData);
                 alert('🎉 Feedback submitted successfully! Thank you for your valuable input!');
 
                 // Reset form
