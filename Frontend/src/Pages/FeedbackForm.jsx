@@ -188,7 +188,7 @@ const FeedbackForm = () => {
     // API call to submit feedback
     const submitFeedbackToAPI = async (feedbackData) => {
         try {
-            const response = await fetch('/api/submit-feedback', {
+            const response = await fetch('/api/submitfeedback', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
