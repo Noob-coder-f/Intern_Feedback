@@ -4,7 +4,7 @@ import {verifyToken} from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-router.post("/submit-feedback", submitFeedback);
+router.post("/submitfeedback", submitFeedback);
 router.get("/feedbacks", verifyToken, getFeedbacks);
 router.patch("/feedbacks/:id/status", verifyToken, updateFeedbackStatus);
 
