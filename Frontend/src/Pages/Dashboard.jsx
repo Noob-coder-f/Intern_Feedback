@@ -590,8 +590,8 @@ export default function FeedbackDashboard() {
   }
 
   return (
-    <div className="bg-[#eceefd] min-h-screen py-6 flex justify-center items-start">
-      <div className="w-full max-w-[1400px] border-4 border-[#ede3ff] rounded-[32px] shadow-[0_10px_64px_0px_rgba(80,60,140,0.08)] bg-white">
+    <div className="bg-[#eceefd] min-h-screen flex justify-center items-start">
+      <div className="w-full shadow-md bg-white">
         <DashboardNavbar
           userName={user?.fullName || user?.username || "User"}
           onLogout={handleLogout}
