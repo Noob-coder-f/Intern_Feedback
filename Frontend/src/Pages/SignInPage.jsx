@@ -86,8 +86,6 @@ const SignInPage = () => {
     try {
       // Call the API
       const result = await signInAPI(email, password);
-
-      console.log("Login successful:", result);
       
       // Store user data and token
       if (result.token) {
