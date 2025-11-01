@@ -1,6 +1,6 @@
 {
   "rewrites": [
-    { "source": "/api/(.*)", "destination": "https://intern-feedback.onrender.com" },
+    { "source": "/api/(.*)", "destination": "https://intern-feedback.onrender.com/api/$1" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
